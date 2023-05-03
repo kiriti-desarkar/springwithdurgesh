@@ -11,6 +11,8 @@ public class Test {
 				"com/springcore/ci/ci-config.xml");
 		Person temp1 = (Person) context.getBean("Person");
 		System.out.println(temp1);
+		Addition a = (Addition) context.getBean("Add");
+		a.doSum();
 	}
 
 }
