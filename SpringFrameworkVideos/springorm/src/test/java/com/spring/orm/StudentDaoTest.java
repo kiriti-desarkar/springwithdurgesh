@@ -22,7 +22,7 @@ public class StudentDaoTest {
         student.setStudentId(123);
         student.setStudentName("John");
         student.setStudentCity("Paris");
-        studentDao.setHibernateTemplate(null);
+        //studentDao.setHibernateTemplate(null);
         // perform assertions to check if the student was added successfully
     }
 }

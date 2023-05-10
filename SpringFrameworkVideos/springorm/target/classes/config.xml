@@ -12,7 +12,7 @@
   http://www.springframework.org/schema/tx/spring-tx.xsd
   ">
   
-  <tx:annotation-driven/>
+  <tx:annotation-driven />
 
     <!-- Database Configuration -->
     <bean id="dataSource1" class="org.apache.commons.dbcp2.BasicDataSource">
@@ -23,7 +23,7 @@
     </bean>
 
     <!-- Hibernate Configuration -->
-    <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+    <bean id="sessionFactory1" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource1" />
         <property name="packagesToScan">
             <list>
@@ -33,20 +33,24 @@
         </property>
         <property name="hibernateProperties">
             <props>
-                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQL8Dialect</prop>
                 <prop key="hibernate.show_sql">true</prop>
                 <prop key="hibernate.hbm2ddl.auto">update</prop>
             </props>
         </property>
     </bean>
 
-<!--     <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
-        <property name="sessionFactory" ref="sessionFactory" />
-    </bean> -->
+<bean class="org.springframework.orm.hibernate5.HibernateTemplate" name="hibernateTemplate1">
+	<property name="sessionFactory" ref="sessionFactory1"></property>
+</bean>
 
+<bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory1" />
+    </bean>
+    
     <!-- DAO Implementation -->
     <bean id="studentDao" class="com.spring.orm.dao.StudentDao">
-        <property name="sessionFactory" ref="sessionFactory" />
+        <property name="hibernateTemplate" ref="hibernateTemplate1" />
     </bean>
 
 

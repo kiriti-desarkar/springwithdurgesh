@@ -16,6 +16,18 @@ public class StudentDao {
 		Integer i = (Integer) this.hibernateTemplate.save(student);
 		return i;
 	}
+	
+	public StudentDao() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public StudentDao(HibernateTemplate hibernateTemplate) {
+		super();
+		this.hibernateTemplate = hibernateTemplate;
+	}
+
+
 
 	public HibernateTemplate getHibernateTemplate() {
 		return hibernateTemplate;
